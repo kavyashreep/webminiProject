@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			body {
+					font-family: Arial;
+					height: 600px;
+					margin: 0;
+					background-image: url("ProjectImages/ProductList.png");
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+				 }
+			  *  {
+					box-sizing: border-box;
+				 }
+
+			form.searchb input[type=text] 
+			{
+				padding: 10px;
+				font-size: 17px;
+				border: 1px solid blue;
+				float: left;
+				width: 500px;
+			}
+
+			form.searchb button {
+				float: left;
+				width: 10%;
+				padding: 10px;
+				background: #2196F3;
+				color: white;
+				font-size: 17px;
+				border: 1px solid blue;
+				border-left: none;
+				cursor: pointer;
+			}
+
+			form.searchb button:hover {
+				background: #0b7dda;
+			}
+
+			form.searchb::after {
+				content: "";
+				clear: both;
+				display: table;
+			}
+
+			p {
+				position:relative;
+				top:70px;
+				color: #2196F3;
+				font-family: ariel;
+				font-size: 40px;
+				text-align: center;
+
+			}
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, 
+							rgba(255, 255, 255, 0) 100%);
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+
+			}
+
+			li {
+				float: right;
+			}
+
+			li a {
+				display: block;
+				color: #2196F3;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			li a:hover {
+				background-color:#D3D3D3;
+			}
+			div.type{
+				position:absolute;
+				top:280px;
+				left:400px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><a class="active" href="contact_us.html">Contact Us</a></li>
+			<li><a href="login.html">Home</a></li>
+		</ul>
+		<p>
+			<i><b>Hey!What are you looking for</b></i>
+		</p><br><br><br>
+		<form class="searchb" action="productList.php" method="post"
+			style="margin: auto; max-width: 700px">
+			<div class="type">
+			<input type="text" placeholder="Type product name here.." name="search"
+				id="transcript"> <img onclick="startDictation()"
+				src="ProjectImages\voice_button.png" style="width: 6%; height: 6%">
+			<button type="submit">
+				<i class="fa fa-search"></i>
+			</button>
+			</div>
+		</form><br><br>
+		
+	
+	<script>
+	  function startDictation() {
+
+		if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+		  var recognition = new webkitSpeechRecognition();
+
+		  recognition.continuous = false;
+		  recognition.interimResults = false;
+
+		  recognition.lang = "en-US";
+		  recognition.start();
+
+		  recognition.onresult = function(e) {
+			document.getElementById('transcript').value
+									 = e.results[0][0].transcript;
+			recognition.stop();
+			document.getElementById('labnol').submit();
+		  };
+
+		  recognition.onerror = function(e) {
+			recognition.stop();
+		  }
+		}
+	  }
+	</script>
+	</body>
+</html>
